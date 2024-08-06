@@ -1,11 +1,30 @@
-import { Categories, Container, Title } from '../components/shared'
+import { TopBar, Container, Title, Filters } from '../components/shared'
 
 export default function Home() {
   return(
     <>
       <Container className="mt-10">
         <Title text="All pizzas" size="lg" className="font-extrabold" />
-        <Categories />
+      </Container>
+
+      <TopBar />
+
+      <Container className="pb-14">
+        <div className="flex gap-[60px]">
+
+          {/* Filters */}
+          <div className="w-[250px]">
+            <Filters />
+          </div>
+
+          {/* Products list */}
+          <div className="flex-1">
+            <div className="flex flex-col gap-16">
+              Products list
+            </div>
+          </div>
+
+        </div>
       </Container>
     </>
   )
