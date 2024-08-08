@@ -21,7 +21,7 @@ export default function Home() {
           <div className="flex-1">
             <div className="flex flex-col gap-16">
               <ProductsGroupList 
-                title="Pizzas" 
+                title="Пиццы" 
                 items={ Array.from(Array(10), (_, i) => ({ 
                   id: i, 
                   name: 'Пепперони', 
@@ -36,7 +36,7 @@ export default function Home() {
               />
 
               <ProductsGroupList 
-                title="Burgers" 
+                title="Комбо" 
                 items={ Array.from(Array(10), (_, i) => ({ 
                   id: i, 
                   name: 'Пепперони', 
@@ -47,7 +47,7 @@ export default function Home() {
                     { id: 3, price: 600 },
                   ]
                 }))}
-                categoryId={1} 
+                categoryId={2} 
               />
             </div>
           </div>
