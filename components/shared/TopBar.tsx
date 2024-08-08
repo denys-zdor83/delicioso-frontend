@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
-import { Container, SortPopup, Categories } from './index'
+import { Container, SortPopup, Categories } from './'
 
 type Props = {
     className?: string
