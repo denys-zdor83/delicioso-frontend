@@ -6,3 +6,4 @@ export { SortPopup } from "./SortPopup";
 export { TopBar } from "./TopBar";
 export { Filters } from "./Filters";
 export { FilterCheckbox } from "./FilterCheckbox";
+export { CheckboxFiltersGroup } from "./CheckboxFiltersGroup";
