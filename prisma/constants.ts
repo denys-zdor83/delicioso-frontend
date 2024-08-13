@@ -17,7 +17,7 @@ export const categories = [
 
 ]
 
-export const ingridients = [
+export const ingredients = [
     {
         name: 'Сырный бортик',
         price: 179,
