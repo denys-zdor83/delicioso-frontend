@@ -1,9 +1,12 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { Api } from '@/services/api-client';
+import { Product } from '@prisma/client';
 import { Search } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
-import {useClickAway} from 'react-use';
+import {useClickAway, useDebounce} from 'react-use';
 
 interface Props {
   className?: string
@@ -12,11 +15,31 @@ interface Props {
 export const SearchInput: React.FC<Props> = ({className}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [focused, setFocused] = React.useState(false);
+  const [products, setProducts] = React.useState<Product[]>([]);
   const ref = React.useRef(null);
 
   useClickAway(ref, () => {
     setFocused(false);
   });
+
+  useDebounce(
+    async () => {
+      try {
+        const response = await Api.products.search(searchQuery);
+        setProducts(response);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    250,
+    [searchQuery],
+  );
+
+  const onClickItem = () => {
+    setFocused(false);
+    setSearchQuery('');
+    setProducts([]);
+  };
 
   return (
     <>
@@ -49,7 +72,11 @@ export const SearchInput: React.FC<Props> = ({className}) => {
                 key={product.id}
                 className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10"
                 href={`/product/${product.id}`}>
-                <img className="rounded-sm h-8 w-8" src={product.imageUrl} alt={product.name} />
+                <img 
+                  className="rounded-sm h-8 w-8" 
+                  src={product.imageUrl} 
+                  alt={product.name} 
+                />
                 <span>{product.name}</span>
               </Link>
             ))}
