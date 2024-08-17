@@ -1,21 +1,27 @@
-import { cn } from '@/lib/utils'
+'use client'
+
 import React from 'react'
 import { FilterCheckbox, Title, CheckboxFiltersGroup } from './'
 import { Input, RangeSlider } from '../ui'
+import { useFilterIngredients } from '@/hooks/useFilterIngredients'
 
 type Props = {
     className?: string
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
+  const { ingredients, loading, onAddId, selectedIds } = useFilterIngredients()
+
+  const items = ingredients.map((item) => ({ value: String(item.id), text: item.name }))
+
   return (
     <div className={className}>
         <Title text="Filters" size="sm" className="mb-5 font-bold" />
         
         {/* Checkbox filters */}
         <div className="flex flex-col gap-4">
-          <FilterCheckbox text="Can be picked up" value="1" />
-          <FilterCheckbox text="New" value="2" />
+          <FilterCheckbox name="delivery" text="Can be picked up" value="1" />
+          <FilterCheckbox name='type' text="New" value="2" />
         </div>
 
         {/* Price ranger */}
@@ -33,90 +39,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
           title="ingredients"
           className="mt-5"
           limit={6}
-          defaultItems={[
-            {
-              text: "some 111",
-              value: "1"
-            },
-            {
-              text: "some 222",
-              value: "2"
-            },
-            {
-              text: "some 333",
-              value: "3"
-            },
-            {
-              text: "some 444",
-              value: "4"
-            },
-          ]}
-          items={[
-            {
-              text: "some 111",
-              value: "1"
-            },
-            {
-              text: "some 222",
-              value: "2"
-            },
-            {
-              text: "some 333",
-              value: "3"
-            },
-            {
-              text: "some 444",
-              value: "4"
-            },
-            {
-              text: "some 111",
-              value: "1"
-            },
-            {
-              text: "some 222",
-              value: "2"
-            },
-            {
-              text: "some 333",
-              value: "3"
-            },
-            {
-              text: "some 444",
-              value: "4"
-            },
-            {
-              text: "some 111",
-              value: "1"
-            },
-            {
-              text: "some 222",
-              value: "2"
-            },
-            {
-              text: "some 333",
-              value: "3"
-            },
-            {
-              text: "some 444",
-              value: "4"
-            },
-            {
-              text: "some 111",
-              value: "1"
-            },
-            {
-              text: "some 222",
-              value: "2"
-            },
-            {
-              text: "some 333",
-              value: "3"
-            },
-            {
-              text: "some 444",
-              value: "4"
-            },
-          ]}
+          defaultItems={items.slice(0, 6)}
+          loading={loading}
+          items={items}
+          onClickCheckbox={onAddId}
+          selectedIds={selectedIds}
+          name="ingredients"
         />
     </div>
   )
