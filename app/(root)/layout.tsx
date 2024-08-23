@@ -12,11 +12,9 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <main className="min-h-screen">
-        <Header />
-        {children}
-      </main>
-    </html>
+    <main className="min-h-screen">
+      <Header />
+      {children}
+    </main>
   );
 }
