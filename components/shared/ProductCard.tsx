@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import React from 'react'
 import { Title } from './';
 import { Button } from '../ui';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 
 interface Props {
     name: string;
