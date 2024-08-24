@@ -1,19 +1,20 @@
 'use client';
 
-import { Product } from "@prisma/client";
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { Title } from "../Title";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-
+import { ChooseProductForm, ChoosePizzaForm } from "..";
+import { ProductWithRelations } from "@/@types/prisma";
 
  interface ModalProps {
-    product: Product;
+    product: ProductWithRelations;
     className?: string;
 }
 
 export const ChooseProductModal: React.FC<ModalProps> = ({ product, className }) => {
     const router = useRouter();
+    const isPizzaForm = Boolean(product.items[0].pizzaType)
+
     return (
         <Dialog 
         open={Boolean(product)}
@@ -25,7 +26,20 @@ export const ChooseProductModal: React.FC<ModalProps> = ({ product, className })
                     className
                 )}
             >
-                <Title text={product?.name}></Title>
+                {
+                    isPizzaForm ? (
+                        <ChoosePizzaForm 
+                            imageUrl={product.imageUrl}
+                            name={product.name} 
+                            ingredients={[]}
+                        />
+                    ) : (
+                        <ChooseProductForm 
+                            imageUrl={product.imageUrl}
+                            name={product.name} 
+                        />
+                    )
+                }
             </DialogContent>
         </Dialog>
     )
