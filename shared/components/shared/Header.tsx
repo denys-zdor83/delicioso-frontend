@@ -1,7 +1,7 @@
 import React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
-import { Container, SearchInput } from './'
+import { Container, SearchInput } from '.'
 import Image from 'next/image'
 import { Button } from '../ui'
 import { ArrowRight, ShoppingCart, User } from 'lucide-react'

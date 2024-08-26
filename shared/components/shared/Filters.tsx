@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { Title, CheckboxFiltersGroup } from './'
+import { Title, CheckboxFiltersGroup } from '.'
 import { Input, RangeSlider } from '../ui'
-import { useQueryFilters, useFilters, useIngredients } from '@/hooks'
+import { useQueryFilters, useFilters, useIngredients } from '@/shared/hooks'
 
 type Props = {
     className?: string

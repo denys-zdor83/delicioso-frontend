@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import React from 'react'
-import { Title } from './';
+import { Title } from '.';
 import { Button } from '../ui';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
