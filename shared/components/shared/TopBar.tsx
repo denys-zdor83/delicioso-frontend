@@ -1,6 +1,6 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import React from 'react'
-import { Container, SortPopup, Categories } from './'
+import { Container, SortPopup, Categories } from '.'
 import { Category } from '@prisma/client';
 
 interface Props {
