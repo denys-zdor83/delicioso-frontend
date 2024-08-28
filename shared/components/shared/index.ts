@@ -12,6 +12,7 @@ export { ProductsGroupList } from "./ProductsGroupList";
 export { SearchInput } from "./SearchInput";
 export { PizzaImage } from "./PizzaImage";
 export { GroupVariants } from "./GroupVariants";
-export { ChooseProductModal } from "./modals";
 export { ChooseProductForm } from "./ChooseProductForm";
 export { ChoosePizzaForm } from "./ChoosePizzaForm";
+export { IngredientItem } from "./IngredientItem";
+export * from "./modals";

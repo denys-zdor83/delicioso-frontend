@@ -31,9 +31,9 @@ export default async function ProductPage({ params: { id } }: { params: { id: st
                     <GroupVariants 
                         selectedValue="2"
                         items={[
-                            { name: 'Маленькая', value: '1' },
-                            { name: 'Средняя', value: '2' },
-                            { name: 'Большая', value: '3' },
+                            { name: 'Small', value: '1' },
+                            { name: 'Middle', value: '2' },
+                            { name: 'Big', value: '3' },
                         ]}
                     />
                 </div>
