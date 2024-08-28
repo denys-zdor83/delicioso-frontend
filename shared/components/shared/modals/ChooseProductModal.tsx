@@ -17,8 +17,8 @@ export const ChooseProductModal: React.FC<ModalProps> = ({ product, className })
 
     return (
         <Dialog 
-        open={Boolean(product)}
-        onOpenChange={() => router.back()}
+            open={Boolean(product)}
+            onOpenChange={() => router.back()}
         >
             <DialogContent
                 className={cn(
@@ -31,7 +31,8 @@ export const ChooseProductModal: React.FC<ModalProps> = ({ product, className })
                         <ChoosePizzaForm 
                             imageUrl={product.imageUrl}
                             name={product.name} 
-                            ingredients={[]}
+                            ingredients={product.ingredients}
+                            items={product.items}
                         />
                     ) : (
                         <ChooseProductForm 
