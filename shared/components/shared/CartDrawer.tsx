@@ -30,11 +30,11 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
         state.fetchCartItems,
         state.items
     ]);
-
+    
     React.useEffect(() => {
         fetchCartItems();
     }, []);
-
+    
   return (
     <Sheet>
         <SheetTrigger asChild>{children}</SheetTrigger>
