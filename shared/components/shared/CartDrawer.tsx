@@ -34,7 +34,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
     React.useEffect(() => {
         fetchCartItems();
     }, []);
-    
+
   return (
     <Sheet>
         <SheetTrigger asChild>{children}</SheetTrigger>
@@ -44,7 +44,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                 {/* {totalAmount > 0 && ( */}
                     <SheetHeader>
                         <SheetTitle>
-                            В корзине <span className="font-bold">3 товара</span>
+                            В корзине <span className="font-bold">{items.length} товара</span>
                         </SheetTitle>
                     </SheetHeader>
                 {/* // )} */}
