@@ -29,7 +29,7 @@ export default async function ProductPage({ params: { id } }: { params: { id: st
                     </p>
 
                     <GroupVariants 
-                        selectedValue="2"
+                        value="2"
                         items={[
                             { name: 'Small', value: '1' },
                             { name: 'Middle', value: '2' },
