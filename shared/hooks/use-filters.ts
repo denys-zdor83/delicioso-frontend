@@ -58,14 +58,17 @@ export const useFilters = (): ReturnProps => {
         }))
     }
 
-    return {
-        selectedIngredients,
-        sizes,
-        pizzaTypes,
-        prices,
-        setSelectedIngredients: toggleIngredients,
-        setSizes: toggleSizes,
-        setPizzaTypes: togglePizzaTypes,
-        setPrices: updatePrice,
-    }
+    return React.useMemo(
+        () => ({
+                selectedIngredients,
+                sizes,
+                pizzaTypes,
+                prices,
+                setSelectedIngredients: toggleIngredients,
+                setSizes: toggleSizes,
+                setPizzaTypes: togglePizzaTypes,
+                setPrices: updatePrice,
+        }),
+        [selectedIngredients, sizes, pizzaTypes, prices]
+    )
 }
