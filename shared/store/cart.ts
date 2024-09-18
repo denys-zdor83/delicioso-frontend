@@ -12,16 +12,16 @@ export interface CartState {
   totalAmount: number;
   items: CartStateItem[];
 
-  /* Получение товаров из корзины */
+  /* Receive products from cart */
   fetchCartItems: () => Promise<void>;
 
-  /* Запрос на обновление количества товара */
+  /* Request to update product quantity */
   updateItemQuantity: (id: number, quantity: number) => Promise<void>;
 
-  /* Запрос на добавление товара в корзину */
+  /* Request to add product to cart */
   addCartItem: (values: CreateCartItemValues) => Promise<void>;
 
-  /* Запрос на удаление товара из корзины */
+  /* Request to remove product from cart */
   removeCartItem: (id: number) => Promise<void>;
 }
 
@@ -62,7 +62,7 @@ export const useCartStore = create<CartState>((set, get) => ({
       set((state) => ({
         loading: true,
         error: false,
-        // items: state.items.map((item) => (item.id === id ? { ...item, disabled: true } : item)),
+        items: state.items.map((item) => (item.id === id ? { ...item, disabled: true } : item)),
       }));
       const data = await Api.cart.removeCartItem(id);
       set(getCartDetails(data));
@@ -72,7 +72,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     } finally {
       set((state) => ({
         loading: false,
-        // items: state.items.map((item) => ({ ...item, disabled: false })),
+        items: state.items.map((item) => ({ ...item, disabled: false })),
       }));
     }
   },
