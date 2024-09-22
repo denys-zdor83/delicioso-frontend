@@ -6,7 +6,8 @@ import { GroupVariants, IngredientItem, PizzaImage, Title } from '.';
 import { Button } from '../ui';
 import { PizzaSize, PizzaType, pizzaTypes } from '@/shared/constants/pizza';
 import { Ingredient, ProductItem } from '@prisma/client';
-import { getPizzaDetails, usePizzaOptions } from '@/shared/lib';
+import { getPizzaDetails } from '@/shared/lib';
+import { usePizzaOptions } from '@/shared/hooks';
 
 interface Props {
   imageUrl: string;

@@ -16,27 +16,19 @@ import Link from 'next/link';
 import { Button } from '../ui';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { CartDrawerItem, Title } from '.';
-import { useCartStore } from '@/shared/store';
 import { getCartItemDetails } from '@/shared/lib';
 import { PizzaSize, PizzaType } from '@/shared/constants/pizza';
 import { cn } from '@/shared/lib/utils';
+import { useCart } from '@/shared/hooks';
 
-type Props = {
-    className?: string
-}
-
-export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
-    const [totalAmount, items, fetchCartItems, updateItemQuantity, removeCartItem ] = useCartStore(state => [
-        state.totalAmount, 
-        state.items,
-        state.fetchCartItems,
-        state.updateItemQuantity,
-        state.removeCartItem,
-    ]);
-    
-    React.useEffect(() => {
-        fetchCartItems();
-    }, []);
+export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+    const {
+        totalAmount,
+        items,
+        updateItemQuantity,
+        removeCartItem,
+    } = useCart();
+    const [redirecting, setRedirecting] = React.useState(false);
 
     const onClickCountButton = ( id: number, quantity: number, type: 'plus' | 'minus') => {
         const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
@@ -83,12 +75,11 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                                         id={item.id}
                                         imageUrl={item.imageUrl}
                                         details={
-                                            item.pizzaSize && item.pizzaType ?
                                             getCartItemDetails(
                                                 item.ingredients,
                                                 item.pizzaType as PizzaType,
                                                 item.pizzaSize as PizzaSize,
-                                            ) : ''
+                                            )
                                         }
                                         disabled={item.disabled}
                                         name={item.name}
@@ -116,8 +107,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 
                                 <Link href="/checkout">
                                     <Button
-                                        // onClick={() => setRedirecting(true)}
-                                        // loading={redirecting}
+                                        onClick={() => setRedirecting(true)}
+                                        loading={redirecting}
                                         type="submit"
                                         className="w-full h-12 text-base"
                                     >

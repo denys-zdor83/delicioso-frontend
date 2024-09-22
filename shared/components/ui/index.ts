@@ -8,3 +8,4 @@ export { Drawer } from "./drawer";
 export { Input } from "./input";
 export { Popover } from "./popover";
 export { RangeSlider } from "./range-slider";
+export { Textarea } from "./textarea";
