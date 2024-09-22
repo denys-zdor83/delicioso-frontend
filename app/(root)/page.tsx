@@ -1,4 +1,3 @@
-import { prisma } from '@/prisma/prisma-client'
 import { TopBar, Container, Title, Filters, ProductsGroupList } from '../../shared/components/shared'
 import { Suspense } from 'react'
 import { findPizzas } from '@/shared/lib';

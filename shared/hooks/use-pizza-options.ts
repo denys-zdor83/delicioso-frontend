@@ -2,8 +2,8 @@ import React from "react"
 import { Variant } from "../components/shared/GroupVariants"
 import { PizzaSize, PizzaType } from "../constants/pizza"
 import { useSet } from "react-use";
-import { getAvailablePizzaSizes } from ".";
 import { ProductItem } from "@prisma/client";
+import { getAvailablePizzaSizes } from "../lib";
 
 interface ReturnProps {
     size: PizzaSize;
