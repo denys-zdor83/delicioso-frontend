@@ -1,12 +1,11 @@
 'use client';
 
 import React from 'react';
-// import { FormTextarea } from '../form';
-// import { AdressInput } from '../address-input';
 import { Controller, useFormContext } from 'react-hook-form';
-// import { ErrorText } from '../error-text';
-import { Input, Textarea } from '../../ui';
 import { WhiteBlock } from '../WhiteBlock';
+import { FormTextarea } from '../Form';
+import { AdressInput } from '../AddressInput';
+import { ErrorText } from '../ErrorText';
 
 interface Props {
   className?: string;
@@ -18,11 +17,12 @@ export const CheckoutAddressForm: React.FC<Props> = ({ className }) => {
   return (
     <WhiteBlock title="3. Адрес доставки" className={className}>
       <div className="flex flex-col gap-5">
-        {/* <Controller
+        <Controller
           control={control}
           name="address"
           render={({ field, fieldState }) => (
             <>
+                {/* TODO Change the address library to US or Canadian */}
               <AdressInput onChange={field.onChange} />
               {fieldState.error?.message && <ErrorText text={fieldState.error.message} />}
             </>
@@ -34,16 +34,7 @@ export const CheckoutAddressForm: React.FC<Props> = ({ className }) => {
           className="text-base"
           placeholder="Комментарий к заказу"
           rows={5}
-        /> */}
-
-
-        <Input name="firstName" className="text-base" placeholder="Address" />
-        <Textarea 
-            className="text-base" 
-            rows={5} 
-            placeholder="Coments to the order" 
         />
-
       </div>
     </WhiteBlock>
   );
