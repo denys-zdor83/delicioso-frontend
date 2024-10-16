@@ -4,6 +4,7 @@ import { CheckoutItem } from '../CheckoutItem';
 import { getCartItemDetails } from '@/shared/lib';
 import { PizzaSize, PizzaType } from '@/shared/constants/pizza';
 import { CartStateItem } from '@/shared/lib/get-cart-details';
+import { CheckoutItemSkeleton } from '..';
 
 interface Props {
   items: CartStateItem[];
@@ -24,7 +25,9 @@ export const CheckoutCart: React.FC<Props> = ({
     <WhiteBlock title='1. Cart' className={className}>
       <div className="flex flex-col gap-5">
         {
-          items.map((item) => (
+          loading
+          ? [...Array(4)].map((_, index) => <CheckoutItemSkeleton key={index} />)
+          : items.map((item) => (
             <CheckoutItem 
               key={item.id}
               id={item.id} 

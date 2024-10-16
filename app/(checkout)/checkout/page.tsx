@@ -1,6 +1,7 @@
 'use client';
 
 
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -8,25 +9,25 @@ import {
   CheckoutSidebar,
   Container,
   Title,
-  CheckoutCart,
   CheckoutItemDetails,
   CheckoutItem,
   FormInput,
+
   CheckoutPersonalForm,
+  CheckoutCart,
   CheckoutAddressForm,
 } from '@/shared/components/shared';
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react';
 import { useCart } from '@/shared/hooks';
 import { getCartItemDetails } from '@/shared/lib';
+import { checkoutFormSchema, CheckoutFormValues } from '@/shared/constants';
 // import { createOrder } from '@/app/actions';
 // import toast from 'react-hot-toast';
-import React from 'react';
-import { checkoutFormSchema, CheckoutFormValues } from '@/shared/components/shared/Checkout/CheckoutFormSchema';
 // import { useSession } from 'next-auth/react';
 // import { Api } from '@/shared/services/api-client';
 
 export default function CheckoutPage() {
-  const [submitting, setSubmitting] = React.useState(false);
+  // const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
 //   const { data: session } = useSession();
 
@@ -58,6 +59,7 @@ export default function CheckoutPage() {
 //   }, [session]);
 
   const onSubmit = async (data: CheckoutFormValues) => {
+    console.log(data);
 //     try {
 //       setSubmitting(true);
 
@@ -101,18 +103,20 @@ export default function CheckoutPage() {
                 loading={loading}
               />
 
-              <CheckoutPersonalForm />
+              {/* TODO Create a phone number mask - React Imask */}
 
-              <CheckoutAddressForm />
+              <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
 
-              {/* <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} /> */}
-
-              {/* <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} /> */}
+              <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
             </div>
 
             {/* Правая часть */}
             <div className="w-[450px]">
-              <CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
+              <CheckoutSidebar 
+                totalAmount={totalAmount} 
+                // loading={loading || submitting} 
+                loading={loading} 
+              />
             </div>
           </div>
         </form>

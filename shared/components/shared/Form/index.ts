@@ -1,2 +1,2 @@
 export { FormInput } from './FormInput';
-// export { FormTextarea } from './FormTextarea';
+export { FormTextarea } from './FormTextarea';
