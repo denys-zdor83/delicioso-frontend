@@ -21,7 +21,11 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
     <WhiteBlock className={cn('p-6 sticky top-4', className)}>
         <div className="flex flex-col gap-1">
             <span className="text-xl">Total price:</span>
-            <span className="text-[34px] font-extrabold">{totalPrice} $</span>
+            {
+                loading ? 
+                <Skeleton className="w-48 h-11" /> : 
+                <span className="h-11text-[34px] font-extrabold">{totalPrice} $</span>
+            }
         </div>
 
         <CheckoutItemDetails
@@ -31,7 +35,11 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                     Product price:
                 </div>
             }
-            value={`${totalAmount} $`}
+            value={ 
+                loading ? 
+                <Skeleton className="h-6 w-16 rounded-[6px]" /> : 
+                `${totalAmount} $`
+            }
         />
         <CheckoutItemDetails
             title={
@@ -40,7 +48,11 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                     Tax:
                 </div>
             }
-            value={`${vatPrice} $`}
+            value={
+                loading ? 
+                <Skeleton className="h-6 w-16 rounded-[6px]" /> : 
+                `${vatPrice} $`
+            }
         />
         <CheckoutItemDetails
             title={
@@ -49,7 +61,11 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
                     Delivery:
                 </div>
             }
-            value={`${DELIVERY_PRICE} $`}
+            value={
+                loading ? 
+                <Skeleton className="h-6 w-16 rounded-[6px]" /> : 
+                `${DELIVERY_PRICE} $`
+            }
         />
 
         <Button
