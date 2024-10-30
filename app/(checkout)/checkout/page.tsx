@@ -21,13 +21,13 @@ import { ArrowRight, Package, Percent, Truck } from 'lucide-react';
 import { useCart } from '@/shared/hooks';
 import { getCartItemDetails } from '@/shared/lib';
 import { checkoutFormSchema, CheckoutFormValues } from '@/shared/constants';
-// import { createOrder } from '@/app/actions';
-// import toast from 'react-hot-toast';
+import { createOrder } from '@/app/actions';
+import toast from 'react-hot-toast';
 // import { useSession } from 'next-auth/react';
 // import { Api } from '@/shared/services/api-client';
 
 export default function CheckoutPage() {
-  // const [submitting, setSubmitting] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
 //   const { data: session } = useSession();
 
@@ -59,26 +59,25 @@ export default function CheckoutPage() {
 //   }, [session]);
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    console.log(data);
-//     try {
-//       setSubmitting(true);
+    try {
+      setSubmitting(true);
 
-//       const url = await createOrder(data);
+      const url = await createOrder(data);
 
-//       toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-//         icon: '✅',
-//       });
+      toast.success('Заказ успешно оформлен! 📝 Переход на оплату... ', {
+        icon: '✅',
+      });
 
-//       if (url) {
-//         location.href = url;
-//       }
-//     } catch (err) {
-//       console.log(err);
-//       setSubmitting(false);
-//       toast.error('Не удалось создать заказ', {
-//         icon: '❌',
-//       });
-//     }
+      if (url) {
+        location.href = url;
+      }
+    } catch (err) {
+      console.log(err);
+      setSubmitting(false);
+      toast.error('Не удалось создать заказ', {
+        icon: '❌',
+      });
+    }
   };
 
   // TODO  move this function to useCart hook. And use it from useCart here and in CartDrawer
@@ -114,8 +113,7 @@ export default function CheckoutPage() {
             <div className="w-[450px]">
               <CheckoutSidebar 
                 totalAmount={totalAmount} 
-                // loading={loading || submitting} 
-                loading={loading} 
+                loading={loading || submitting} 
               />
             </div>
           </div>
