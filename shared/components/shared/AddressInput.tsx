@@ -8,7 +8,7 @@ interface Props {
   onChange?: (value?: string) => void;
 }
 
-export const AdressInput: React.FC<Props> = ({ onChange }) => {
+export const AddressInput: React.FC<Props> = ({ onChange }) => {
   return (
     <AddressSuggestions
       token="11a99ee1c11179d1c49fa87b33623ce5b4cabd89"
