@@ -6,8 +6,10 @@ import { useDeepCompareEffect } from "react-use"
 
 export const useQueryFilters = (filters: Filters) => {
     const router = useRouter()
+    const isMounted = React.useRef(false)
 
     useDeepCompareEffect(() => {
+      if (isMounted.current) {
         const params = {
           ...filters.prices, 
           sizes: Array.from(filters.sizes),
@@ -22,5 +24,8 @@ export const useQueryFilters = (filters: Filters) => {
         router.push(`?${query}`, {
           scroll: false
         })
+      }
+
+      isMounted.current = true
     }, [ filters ] )
 }
