@@ -1,23 +1,10 @@
 import axios from "axios"
+import { generateAccessToken } from ".";
 
 interface Props {
   description: string;
   orderId: number;
   amount: number;
-}
-
-async function generateAccessToken() {
-  const response = await axios({
-    url: process.env.PAYPAL_BASE_URL + '/v1/oauth2/token',
-    method: 'post',
-    data: "grant_type=client_credentials",
-    auth: {
-      username: process.env.PAYPAL_CLIENT_ID as string,
-      password: process.env.PAYPAL_SECRET as string,
-    },
-  })
-
-  return response.data.access_token
 }
 
 export async function createPayment(details: Props) {
@@ -35,7 +22,7 @@ export async function createPayment(details: Props) {
         intent: 'CAPTURE',
         purchase_units: [
           {
-            custom_id: `${details.orderId}`,
+            custom_id: details.orderId,
             items: [
               {
                 name: 'NAME_' + details.description,
@@ -61,15 +48,12 @@ export async function createPayment(details: Props) {
         ],
         application_context: {
           return_url: process.env.BASE_URL + '/complete-order',
-          cancel_url: process.env.BASE_URL + '/cancel-order',
+          cancel_url: process.env.BASE_URL + '/complete-order',
           user_action: 'PAY_NOW',
           brand_name: 'Delicioso'
         }
       })
     })
-
-    console.log({createOrder: response.data})
-    console.log({createOrder_links: response.data.links})
 
     return response.data
   } catch (error) {

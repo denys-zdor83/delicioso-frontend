@@ -8,3 +8,5 @@ export { findOrCreateCart } from "./find-or-create-cart";
 export { findPizzas } from "./find-pizzas";
 export { sendEmail } from "./send-email";
 export { createPayment } from "./create-payment";
+export { generateAccessToken } from "./generate-paypal-access-token";
+export { capturePayment } from "./capture-paypal-payment";
