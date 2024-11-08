@@ -1,15 +1,17 @@
+'use client';
+
 import React from 'react'
 import { cn } from '@/shared/lib/utils'
-import { CartButton, Container, SearchInput } from '.'
+import { CartButton, Container, ProfileButton, SearchInput } from '.'
 import Image from 'next/image'
-import { Button } from '../ui'
-import { User } from 'lucide-react'
 import Link from 'next/link'
+
 type Props = {
     className?: string;
     hasSearch?: boolean;
     hasCart?: boolean;
 }
+
 export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, className }) => {
   return (
     <header className={cn('border-b', className)}>
@@ -31,12 +33,8 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, clas
 
         {/* Right part of the header */}
         <div className="flex items-center gap-3">
-            <Button variant="outline" className="flex items-center gap-1" >
-                <User size={16} />
-                Войти
-            </Button>
-
-            {hasCart && <CartButton />}
+          <ProfileButton />
+          {hasCart && <CartButton />}
         </div>
       </Container>
     </header>

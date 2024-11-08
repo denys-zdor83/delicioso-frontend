@@ -31,6 +31,7 @@ export { ErrorText } from "./ErrorText";
 export { ClearButton } from "./ClearButton";
 export { AddressInput } from "./AddressInput";
 export { Providers } from "./Providers";
+export { ProfileButton } from "./ProfileButton";
 
 export * from "./Modals";
 export * from "./Form";
