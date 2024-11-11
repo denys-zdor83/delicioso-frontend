@@ -1,2 +1,2 @@
-export * from './CheckoutFormSchema';
+export * from './checkout-form-schema';
 export * from './pizza';
