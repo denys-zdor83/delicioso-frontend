@@ -5,6 +5,8 @@ import { cn } from '@/shared/lib/utils'
 import { AuthModal, CartButton, Container, ProfileButton, SearchInput } from '.'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 type Props = {
     className?: string;
@@ -13,7 +15,32 @@ type Props = {
 }
 
 export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, className }) => {
+  const router = useRouter();
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
+
+  const searchParams = useSearchParams();
+
+  React.useEffect(() => {
+    let toastMessage = '';
+
+    // TODO Replace in the next version
+    // if (searchParams.has('paid')) {
+    //   toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    // }
+
+    if (searchParams.has('verified')) {
+      toastMessage = 'Почта успешно подтверждена!';
+    }
+
+    if (toastMessage) {
+      setTimeout(() => {
+        router.replace('/');
+        toast.success(toastMessage, {
+          duration: 3000,
+        });
+      }, 1000);
+    }
+  }, []);
 
   return (
     <header className={cn('border-b', className)}>
