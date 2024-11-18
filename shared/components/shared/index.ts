@@ -35,6 +35,7 @@ export { ProfileButton } from "./ProfileButton";
 export { InfoBlock } from "./InfoBlock";
 export { ProfileForm } from "./ProfileForm";
 export { Stories } from "./Stories";
+export { PaymentStatus } from "./PaymentStatus";
 
 export * from "./Modals";
 export * from "./Form";

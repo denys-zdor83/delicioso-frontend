@@ -9,17 +9,11 @@ import {
   CheckoutSidebar,
   Container,
   Title,
-  CheckoutItemDetails,
-  CheckoutItem,
-  FormInput,
-
   CheckoutPersonalForm,
   CheckoutCart,
   CheckoutAddressForm,
 } from '@/shared/components/shared';
-import { ArrowRight, Package, Percent, Truck } from 'lucide-react';
 import { useCart } from '@/shared/hooks';
-import { getCartItemDetails } from '@/shared/lib';
 import { checkoutFormSchema, CheckoutFormValues } from '@/shared/constants';
 import { createOrder } from '@/app/actions';
 import toast from 'react-hot-toast';
@@ -57,14 +51,13 @@ export default function CheckoutPage() {
       fetchUserInfo();
     }
   }, [session]);
-
   const onSubmit = async (data: CheckoutFormValues) => {
     try {
       setSubmitting(true);
 
       const url = await createOrder(data);
 
-      toast.success('Заказ успешно оформлен! 📝 Переход на оплату... ', {
+      toast.success('Order created successfully! Redirecting to payment... ', {
         icon: '✅',
       });
 
@@ -74,7 +67,7 @@ export default function CheckoutPage() {
     } catch (err) {
       console.log(err);
       setSubmitting(false);
-      toast.error('Не удалось создать заказ', {
+      toast.error('Failed to create order', {
         icon: '❌',
       });
     }
@@ -88,12 +81,12 @@ export default function CheckoutPage() {
 
   return (
     <Container className="mt-10">
-      <Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
+      <Title text="Checkout" className="font-extrabold mb-8 text-[36px]" />
 
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-10">
-            {/* Левая часть */}
+            {/* Left side */}
             <div className="flex flex-col gap-10 flex-1 mb-20">
               <CheckoutCart
                 onClickCountButton={onClickCountButton}
@@ -109,7 +102,7 @@ export default function CheckoutPage() {
               <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
             </div>
 
-            {/* Правая часть */}
+            {/* Right side */}
             <div className="w-[450px]">
               <CheckoutSidebar 
                 totalAmount={totalAmount} 
