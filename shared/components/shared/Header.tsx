@@ -25,11 +25,11 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, clas
 
     // TODO Replace in the next version
     // if (searchParams.has('paid')) {
-    //   toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    //   toastMessage = 'The order is successfuly paid! The information will be sent to your email.';
     // }
 
     if (searchParams.has('verified')) {
-      toastMessage = 'Почта успешно подтверждена!';
+      toastMessage = 'The email has been successfully verified!';
     }
 
     if (toastMessage) {
@@ -48,11 +48,11 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, clas
 
         {/* Left part of the header */}
         <Link href="/" className="flex items-center gap-4">
-            <Image src="/logo.png" alt="logo" width={35} height={35} />
-            <div>
-                <h1 className="text-2xl uppercase font-black">Deliciouso</h1>
-                <p className="text-sm text-gray-400 leading-3">Order food online</p>
-            </div>
+          <Image src="/logo.png" alt="logo" width={35} height={35} />
+          <div>
+            <h1 className="text-2xl uppercase font-black">Deliciouso</h1>
+            <p className="text-sm text-gray-400 leading-3">Order food online</p>
+          </div>
         </Link>
 
         {/* Middle part of the header */}

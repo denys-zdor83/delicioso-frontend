@@ -8,11 +8,11 @@ interface Props {
 
 export const PayOrderTemplate: React.FC<Props> = ({ orderId, totalAmount, paymentUrl }) => (
   <div>
-    <h1>Заказ #{orderId}</h1>
+    <h1>Order #{orderId}</h1>
 
     <p>
-      Оплатите заказ на сумму <b>{totalAmount} ₽</b>. Перейдите{' '}
-      <a href={paymentUrl}>по этой ссылке</a> для оплаты заказа.
+      Pay for the order in the amount of <b>{totalAmount} $</b>. Go to{' '}
+      <a href={paymentUrl}>this link</a> to pay for the order.
     </p>
   </div>
 );

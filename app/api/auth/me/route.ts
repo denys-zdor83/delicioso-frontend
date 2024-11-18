@@ -11,7 +11,7 @@ export async function GET() {
     const user = await getUserSession();
 
     if (!user) {
-      return NextResponse.json({ message: 'Вы не авторизованы' }, { status: 401 });
+      return NextResponse.json({ message: 'You are not authorized' }, { status: 401 });
     }
 
     const data = await prisma.user.findUnique({

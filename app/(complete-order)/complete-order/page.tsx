@@ -1,15 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { useSearchParams } from "next/navigation";
 import axios from 'axios';
+import { PaymentStatus } from '@/shared/components/shared/PaymentStatus';
+import { Suspense } from 'react';
 
 export default function CompleteOrder() {
     const searchParams = useSearchParams()
     const token = searchParams.get('token'); // Extract token and PayerID from query params
-    const [status, setStatus] = useState('Processing payment...');
+    const [status, setStatus] = React.useState(false);
+    const [loadingStatus, setLoadingStatus] = React.useState(true);
 
-    useEffect(() => {
+    React.useEffect(() => {
       if (token) {
         const capturePayment = async () => {
           try {
@@ -24,10 +27,13 @@ export default function CompleteOrder() {
               }
             });
 
-            setStatus('Payment captured successfully!');
+            setStatus(true);
+            setLoadingStatus(false);
           } catch (error) {
             console.error('Error capturing payment:', error);
-            setStatus('Failed to capture payment. Please try again.');
+            setStatus(false);
+            setLoadingStatus(false);
+
           }
         };
 
@@ -35,10 +41,33 @@ export default function CompleteOrder() {
       }
     }, [token]);
 
-    return (
-        <div>
-            <h1>Order Completion</h1>
-            <p>{status}</p>
+    // TODO Try to make it with Suspence component
+    if (loadingStatus) {
+      return (
+        <div className="flex justify-center">
+          <p>Loading...</p>
         </div>
-    );
+      )
+    } else {
+      return (
+        <div className="flex justify-center">
+          {
+            status ? (
+              <PaymentStatus 
+                className='mt-10'
+                title="Payment completed successfully" 
+                imageUrl="/assets/images/payment-success.png" 
+              />
+            ) : (
+              <PaymentStatus 
+                className='mt-10'
+                title="Payment wasn't completed" 
+                imageUrl="/assets/images/payment-error.png" 
+              />
+            ) 
+          }
+        </div>
+      );
+    }
+
 }

@@ -31,7 +31,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
         
         {/* Checkbox filters */}
         <CheckboxFiltersGroup
-          title="Тип теста"
+          title="Type of dough"
           name="pizzaTypes"
           className="mb-5"
           onClickCheckbox={filters.setPizzaTypes}
@@ -43,15 +43,15 @@ export const Filters: React.FC<Props> = ({ className }) => {
         />
 
         <CheckboxFiltersGroup
-          title="Размеры"
+          title="Size"
           name="sizes"
           className="mb-5"
           onClickCheckbox={filters.setSizes}
           selected={filters.sizes}
           items={[
-            { text: '20 см', value: '20' },
-            { text: '30 см', value: '30' },
-            { text: '40 см', value: '40' },
+            { text: '20 cm', value: '20' },
+            { text: '30 cm', value: '30' },
+            { text: '40 cm', value: '40' },
           ]}
         />
 

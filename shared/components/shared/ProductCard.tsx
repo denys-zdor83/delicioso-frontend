@@ -31,7 +31,7 @@ export const ProductCard: React.FC<Props> = ({ name, price, id, imageUrl, ingred
 
             <div className="flex justify-between items-center mt-4">
                 <span className="text-[20px]">
-                    от <b>{price} ₽</b>
+                    from <b>{price} $</b>
                 </span>
 
                 {/* {count ? (
@@ -39,7 +39,7 @@ export const ProductCard: React.FC<Props> = ({ name, price, id, imageUrl, ingred
                 ) : ( */}
                     <Button variant="secondary">
                         <Plus size={20} className="mr-1" />
-                        Добавить
+                        Add
                     </Button>
                 {/* )} */}
             </div>
