@@ -5,7 +5,7 @@ import { Button, Skeleton } from '../ui';
 import { cn } from '@/shared/lib/utils';
 
 const VAT = 15;
-const DELIVERY_PRICE = 250;
+const DELIVERY_PRICE = 10;
 
 interface Props {
   totalAmount: number;
@@ -73,7 +73,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
             type="submit"
             className="w-full h-14 rounded-2xl mt-6 text-base font-bold"
         >
-            Перейти к оплате
+            Checkout
             <ArrowRight className="w-5 ml-2" />
         </Button>
     </WhiteBlock>

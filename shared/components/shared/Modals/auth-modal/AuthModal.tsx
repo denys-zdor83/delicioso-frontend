@@ -59,7 +59,8 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
               })
             }
             type="button"
-            className="gap-2 h-12 p-2 flex-1">
+            className="gap-2 h-12 p-2 flex-1"
+          >
             <img
               className="w-6 h-6"
               src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg"
@@ -69,7 +70,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
         </div>
 
         <Button variant="outline" onClick={onSwitchType} type="button" className="h-12">
-          {type !== 'login' ? 'Войти' : 'Регистрация'}
+          {type !== 'login' ? 'Login' : 'Register'}
         </Button>
       </DialogContent>
     </Dialog>
