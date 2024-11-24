@@ -10,7 +10,9 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
     <>
       <SessionProvider>{children}</SessionProvider>
       <Toaster />
-      <NextTopLoader />
+      <NextTopLoader 
+        showSpinner={false}
+      />
     </>
   );
 };
