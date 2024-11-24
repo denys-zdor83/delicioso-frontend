@@ -56,11 +56,11 @@ async function up() {
         data: products
     })
 
-    const pizza1 = await prisma.product.create({
+    const pizza_pepperoni_fresh = await prisma.product.create({
         data: {
             name: 'Pepperoni Fresh',
             imageUrl:
-                'https://media.dodostatic.net/image/r:233x233/11EE7D61304FAF5A98A6958F2BB2D260.webp',
+              '/assets/images/products/pepperoni-fresh.webp',
             categoryId: 1,
             ingredients: {
                 connect: ingredients.slice(0, 5),
@@ -68,11 +68,11 @@ async function up() {
         },
     });
 
-    const pizza2 = await prisma.product.create({
+    const pizza_cheesy = await prisma.product.create({
         data: {
             name: 'Cheesy',
             imageUrl:
-                'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp',
+              '/assets/images/products/cheesy.webp',
             categoryId: 1,
             ingredients: {
                 connect: ingredients.slice(5, 10),
@@ -80,11 +80,47 @@ async function up() {
         },
     });
 
-    const pizza3 = await prisma.product.create({
+    const pizza_chorizo_fresh = await prisma.product.create({
         data: {
             name: 'Chorizo Fresh',
             imageUrl:
-                'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp',
+              '/assets/images/products/chorizo-fresh.webp',
+            categoryId: 1,
+            ingredients: {
+                connect: ingredients.slice(10, 40),
+            },
+        },
+    });
+
+    const pizza_mexican_beef_pizza = await prisma.product.create({
+        data: {
+            name: 'Mexican Beef pizza',
+            imageUrl:
+              '/assets/images/products/mexican_beef_pizza.avif',
+            categoryId: 1,
+            ingredients: {
+                connect: ingredients.slice(0, 5),
+            },
+        },
+    });
+
+    const pizza_cheesy_chicken = await prisma.product.create({
+        data: {
+            name: 'Cheesy Chicken',
+            imageUrl:
+              '/assets/images/products/cheesy_chicken.avif',
+            categoryId: 1,
+            ingredients: {
+                connect: ingredients.slice(5, 10),
+            },
+        },
+    });
+
+    const pizza_chicken_bbq = await prisma.product.create({
+        data: {
+            name: 'Chicken BBQ',
+            imageUrl:
+              '/assets/images/products/chicken_bbq.avif',
             categoryId: 1,
             ingredients: {
                 connect: ingredients.slice(10, 40),
@@ -95,22 +131,41 @@ async function up() {
     await prisma.productItem.createMany({
         data: [
             // Pizza "Pepperoni Fresh"
-            generateProductItem({ productId: pizza1.id, pizzaType: 1, size: 20 }),
-            generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 30 }),
-            generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 40 }),
+            generateProductItem({ productId: pizza_pepperoni_fresh.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_pepperoni_fresh.id, pizzaType: 2, size: 30 }),
+            generateProductItem({ productId: pizza_pepperoni_fresh.id, pizzaType: 2, size: 40 }),
 
             // Pizza "Cheesy"
-            generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 20 }),
-            generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 30 }),
-            generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 40 }),
-            generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 20 }),
-            generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 30 }),
-            generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 40 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 1, size: 30 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 1, size: 40 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 2, size: 20 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 2, size: 30 }),
+            generateProductItem({ productId: pizza_cheesy.id, pizzaType: 2, size: 40 }),
 
             // Pizza "Chorizo Fresh"
-            generateProductItem({ productId: pizza3.id, pizzaType: 1, size: 20 }),
-            generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 30 }),
-            generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 40 }),
+            generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 2, size: 30 }),
+            generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 2, size: 40 }),
+
+            // Pizza "Mexican Beef pizza"
+            generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 1, size: 30 }),
+            generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 2, size: 40 }),
+
+            // Pizza "Cheesy Chicken"
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 1, size: 30 }),
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 1, size: 40 }),
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 2, size: 20 }),
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 2, size: 30 }),
+            generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 2, size: 40 }),
+
+            // Pizza "Chicken BBQ"
+            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 1, size: 20 }),
+            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 1, size: 30 }),
+            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 2, size: 30 }),
+            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 2, size: 40 }),
 
             // Another products
             generateProductItem({ productId: 1 }),

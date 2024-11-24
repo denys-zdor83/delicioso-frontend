@@ -19,7 +19,7 @@ export const PaymentStatus: React.FC<Props> = ({ className, title, imageUrl }) =
       <Link href="/">
         <Button variant="outline" className="gap-2 mt-6">
           <ArrowLeft />
-          To the main page
+          Home
         </Button>
       </Link>
     </div>
