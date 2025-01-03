@@ -4,11 +4,13 @@ import React from 'react';
 import { useSearchParams } from "next/navigation";
 import axios from 'axios';
 import { PaymentStatus } from '@/shared/components/shared/PaymentStatus';
-import { Suspense } from 'react';
+import { Loader } from 'lucide-react';
+import { Title } from '@/shared/components/shared';
+
 
 export default function CompleteOrder() {
     const searchParams = useSearchParams()
-    const token = searchParams.get('token'); // Extract token and PayerID from query params
+    const token = searchParams.get('token');
     const [status, setStatus] = React.useState(false);
     const [loadingStatus, setLoadingStatus] = React.useState(true);
 
@@ -28,12 +30,11 @@ export default function CompleteOrder() {
             });
 
             setStatus(true);
-            setLoadingStatus(false);
           } catch (error) {
             console.error('Error capturing payment:', error);
             setStatus(false);
+          } finally {
             setLoadingStatus(false);
-
           }
         };
 
@@ -44,8 +45,11 @@ export default function CompleteOrder() {
     // TODO Try to make it with Suspence component
     if (loadingStatus) {
       return (
-        <div className="flex justify-center">
-          <p>Loading...</p>
+        <div className="flex flex-col items-center mt-10">
+          <Title size="lg" text="Please wait..." className="font-extrabold" />
+          <div>
+            <Loader className="w-10 h-10 animate-spin text-black" />
+          </div>
         </div>
       )
     } else {
@@ -61,7 +65,7 @@ export default function CompleteOrder() {
             ) : (
               <PaymentStatus 
                 className='mt-10'
-                title="Payment wasn't completed" 
+                title="Payment failed" 
                 imageUrl="/assets/images/payment-error.png" 
               />
             ) 

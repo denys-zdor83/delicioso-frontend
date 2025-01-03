@@ -15,6 +15,7 @@ export default function CheckoutLayout({ children }: { children: React.ReactNode
           <Header 
             hasSearch={false} 
             hasCart={false} 
+            hasLogin={false}
             className="border-b-gray-200" 
           />
         </Suspense>

@@ -12,21 +12,21 @@ type Props = {
     className?: string;
     hasSearch?: boolean;
     hasCart?: boolean;
+    hasLogin?: boolean;
 }
 
-export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, className }) => {
+export const Header: React.FC<Props> = ({ 
+  hasSearch = true, 
+  hasCart = true, 
+  hasLogin = true, 
+  className 
+}) => {
   const router = useRouter();
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
-
   const searchParams = useSearchParams();
 
   React.useEffect(() => {
     let toastMessage = '';
-
-    // TODO Replace in the next version
-    // if (searchParams.has('paid')) {
-    //   toastMessage = 'The order is successfuly paid! The information will be sent to your email.';
-    // }
 
     if (searchParams.has('verified')) {
       toastMessage = 'The email has been successfully verified!';
@@ -63,7 +63,8 @@ export const Header: React.FC<Props> = ({ hasSearch = true, hasCart = true, clas
         {/* Right part of the header */}
         <div className="flex items-center gap-3">
           <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
-          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
+          {/* TODO: Returt LogIn button for 'complete-order' page. Fix loader */}
+          {hasLogin && <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />}
           {hasCart && <CartButton />}
         </div>
       </Container>

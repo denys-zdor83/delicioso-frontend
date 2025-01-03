@@ -46,15 +46,15 @@ async function up() {
 
     await prisma.category.createMany({
         data: categories
-    })
+    });
 
     await prisma.ingredient.createMany({
         data: ingredients
-    })
+    });
 
     await prisma.product.createMany({
         data: products
-    })
+    });
 
     const pizza_pepperoni_fresh = await prisma.product.create({
         data: {
@@ -144,14 +144,13 @@ async function up() {
             generateProductItem({ productId: pizza_cheesy.id, pizzaType: 2, size: 40 }),
 
             // Pizza "Chorizo Fresh"
-            generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 1, size: 20 }),
             generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 2, size: 30 }),
             generateProductItem({ productId: pizza_chorizo_fresh.id, pizzaType: 2, size: 40 }),
 
             // Pizza "Mexican Beef pizza"
             generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 1, size: 20 }),
             generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 1, size: 30 }),
-            generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 2, size: 40 }),
+            generateProductItem({ productId: pizza_mexican_beef_pizza.id, pizzaType: 1, size: 40 }),
 
             // Pizza "Cheesy Chicken"
             generateProductItem({ productId: pizza_cheesy_chicken.id, pizzaType: 1, size: 20 }),
@@ -164,8 +163,6 @@ async function up() {
             // Pizza "Chicken BBQ"
             generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 1, size: 20 }),
             generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 1, size: 30 }),
-            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 2, size: 30 }),
-            generateProductItem({ productId: pizza_chicken_bbq.id, pizzaType: 2, size: 40 }),
 
             // Another products
             generateProductItem({ productId: 1 }),
@@ -215,62 +212,97 @@ async function up() {
     });
 
     await prisma.story.createMany({
-        data: [
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/xep/xzh/zmc/cr4gcw0aselwvf628pbmj3j/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3101815496',
-          },
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/km2/9gf/jrn/sb7ls1yj9fe5bwvuwgym73e/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3074015640',
-          },
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/quw/acz/zf5/zu37vankpngyccqvgzbohj1/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=1336215020',
-          },
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/7oc/5nf/ipn/oznceu2ywv82tdlnpwriyrq/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=38903958',
-          },
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/q0t/flg/0ph/xt67uw7kgqe9bag7spwkkyw/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=2941222737',
-          },
-          {
-            previewImageUrl:
-              'https://cdn.inappstory.ru/story/lza/rsp/2gc/xrar8zdspl4saq4uajmso38/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=4207486284',
-          },
-        ],
-      });
+      data: [
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/xep/xzh/zmc/cr4gcw0aselwvf628pbmj3j/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3101815496',
+        },
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/km2/9gf/jrn/sb7ls1yj9fe5bwvuwgym73e/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3074015640',
+        },
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/quw/acz/zf5/zu37vankpngyccqvgzbohj1/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=1336215020',
+        },
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/7oc/5nf/ipn/oznceu2ywv82tdlnpwriyrq/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=38903958',
+        },
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/q0t/flg/0ph/xt67uw7kgqe9bag7spwkkyw/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=2941222737',
+        },
+        {
+          previewImageUrl:
+            'https://cdn.inappstory.ru/story/lza/rsp/2gc/xrar8zdspl4saq4uajmso38/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=4207486284',
+        },
+      ],
+    });
     
     await prisma.storyItem.createMany({
-        data: [
-          {
-            storyId: 1,
-            sourceUrl:
-              'https://cdn.inappstory.ru/file/dd/yj/sx/oqx9feuljibke3mknab7ilb35t.webp?k=IgAAAAAAAAAE',
-          },
-          {
-            storyId: 1,
-            sourceUrl:
-              'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
-          },
-          {
-            storyId: 1,
-            sourceUrl:
-              'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
-          },
-          {
-            storyId: 1,
-            sourceUrl:
-              'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
-          },
-          {
-            storyId: 1,
-            sourceUrl:
-              'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
-          },
-        ],
+      data: [
+        {
+          storyId: 1,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/dd/yj/sx/oqx9feuljibke3mknab7ilb35t.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 1,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 2,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 2,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 3,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 3,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 4,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 4,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 5,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 5,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/dd/yj/sx/oqx9feuljibke3mknab7ilb35t.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 6,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
+        },
+        {
+          storyId: 6,
+          sourceUrl:
+            'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+        },
+      ],
     });
 }
 
