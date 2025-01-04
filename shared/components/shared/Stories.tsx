@@ -24,6 +24,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
   const [selectedStory, setSelectedStory] = React.useState<IStory>();
   const { width } = useWindowSize();
   let storyCardsNumber = 5;
+  let storyCardsWidth = 520;
 
   if (768 < width && width < 1024) {
     storyCardsNumber = 4;
@@ -31,6 +32,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
     storyCardsNumber = 3;
   } else if (width < 640) {
     storyCardsNumber = 2;
+    storyCardsWidth = width - 20;
   }
 
   React.useEffect(() => {
@@ -81,7 +83,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
 
         {open && (
           <div className="absolute left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-30">
-            <div className="relative" style={{ width: 520 }}>
+            <div className="relative" >
               <button className="absolute -right-10 -top-5 z-30" onClick={() => setOpen(false)}>
                 <X className="absolute top-0 right-0 w-8 h-8 text-white/50" />
               </button>
@@ -90,7 +92,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
                 onAllStoriesEnd={() => setOpen(false)}
                 stories={selectedStory?.items.map((item) => ({ url: item.sourceUrl })) || []}
                 defaultInterval={3000}
-                width={520}
+                width={storyCardsWidth}
                 height={800}
               />
             </div>
