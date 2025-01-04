@@ -15,7 +15,8 @@ export const TopBar: React.FC<Props> = ({ categories, className }) => {
         <Categories 
           items={categories}
         />
-        <SortPopup />
+        {/* TODO: fix Sort Popup */}
+        {/* <SortPopup /> */}
       </Container>
     </div>
   )

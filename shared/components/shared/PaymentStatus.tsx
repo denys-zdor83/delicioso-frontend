@@ -6,12 +6,12 @@ import { cn } from '@/shared/lib/utils';
 import { Title } from '.';
 
 interface Props {
-  title: string;
+  title?: string;
   className?: string;
   imageUrl?: string;
 }
 
-export const PaymentStatus: React.FC<Props> = ({ className, title, imageUrl }) => {
+export const PaymentStatus: React.FC<Props> = ({ className, title = '', imageUrl }) => {
   return (
     <div className={cn(className, 'flex flex-col items-center justify-center')}>
       <Title size="lg" text={title} className="font-extrabold" />

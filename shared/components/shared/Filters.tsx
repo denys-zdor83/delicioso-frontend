@@ -61,28 +61,28 @@ export const Filters: React.FC<Props> = ({ className }) => {
           <div className="flex gap-3 mb-5">
             <Input 
               type="number" 
-              placeholder="0" 
-              min={0} 
-              max={1000} 
+              placeholder="1" 
+              min={1} 
+              max={30} 
               value={filters.prices.priceFrom} 
               onChange={(e) => filters.setPrices('priceFrom', Number(e.target.value))}
             />
             <Input 
               type="number" 
-              min={100} 
-              max={1000} 
-              placeholder="5000" 
+              min={1} 
+              max={30} 
+              placeholder="30" 
               value={filters.prices.priceTo} 
               onChange={(e) => filters.setPrices('priceTo', Number(e.target.value))}
             />
           </div>
           <RangeSlider 
-            min={0} 
-            max={1000} 
-            step={10} 
+            min={1} 
+            max={30} 
+            step={1} 
             value={[
-              filters.prices.priceFrom || 0, 
-              filters.prices.priceTo || 1000 
+              filters.prices.priceFrom || 1, 
+              filters.prices.priceTo || 30 
             ]} 
             onValueChange={updatePrices}
           />
