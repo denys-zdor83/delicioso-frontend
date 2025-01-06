@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { CircleUser, User } from 'lucide-react';
 import Link from 'next/link';
+import { useCartStore } from '@/shared/store';
 
 interface Props {
   onClickSignIn?: () => void;
@@ -10,13 +11,16 @@ interface Props {
 }
 
 export const ProfileButton: React.FC<Props> = ({ className, onClickSignIn }) => {
+  const [loading] = useCartStore((state) => [
+    state.loading
+  ]);
   const { data: session } = useSession();
 
   return (
     <div className={className}>
-      {/* TODO to set loader on button */}
       {!session ? (
         <Button 
+          loading={loading}
           onClick={onClickSignIn} 
           variant="outline" 
           className="flex items-center gap-1"
@@ -26,7 +30,11 @@ export const ProfileButton: React.FC<Props> = ({ className, onClickSignIn }) => 
         </Button>
       ) : (
         <Link href="/profile">
-          <Button variant="secondary" className="flex items-center gap-2">
+          <Button 
+            loading={loading}
+            variant="secondary" 
+            className="flex items-center gap-2"
+          >
             <CircleUser size={18} />
             Profile
           </Button>

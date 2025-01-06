@@ -7,6 +7,21 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
 
   const categories = await findPizzas(searchParams);
 
+  let filteredProducts = categories.map((category) => (
+    category.products.length > 0 && (
+      <ProductsGroupList 
+        title={category.name}
+        key={category.id}
+        categoryId={category.id}
+        items={category.products} 
+      />
+    )
+  ))
+
+  let allProducts = filteredProducts.every((product) => product === false) ? 
+  <Title text="No products matching this request were found" size="md" className="font-extrabold text-center" /> : 
+  filteredProducts
+
   return(
     <>
       <Container className="mt-10">
@@ -17,6 +32,7 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
         categories={categories.filter(category => category.products.length > 0)}
       />
 
+      {/* TODO: Make every story working, and make them all as slider */}
       <Stories />
 
       <Container className="mt-10 pb-14">
@@ -32,19 +48,7 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
           {/* Products list */}
           <div className="flex-1">
             <div className="flex flex-col gap-16">
-              {
-                categories.map((category) => (
-                  category.products.length > 0 && (
-                    <ProductsGroupList 
-                      title={category.name}
-                      key={category.id}
-                      categoryId={category.id}
-                      items={category.products} 
-                    />
-                  )
-                ))
-              }
-
+              { allProducts }
             </div>
           </div>
 
