@@ -95,8 +95,6 @@ export default function CheckoutPage() {
                 loading={loading}
               />
 
-              {/* TODO Create a phone number mask - React Imask */}
-
               <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
 
               <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
