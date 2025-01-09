@@ -22,7 +22,7 @@ import { Api } from '@/shared/services/api-client';
 
 export default function CheckoutPage() {
   const [submitting, setSubmitting] = React.useState(false);
-  const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
+  const { totalAmount, clickCountButton, items, removeCartItem, loading } = useCart();
   const { data: session } = useSession();
 
   const form = useForm<CheckoutFormValues>({
@@ -73,12 +73,6 @@ export default function CheckoutPage() {
     }
   };
 
-  // TODO  move this function to useCart hook. And use it from useCart here and in CartDrawer
-  const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
-    updateItemQuantity(id, newQuantity);
-  };
-
   return (
     <Container className="mt-10">
       <Title text="Checkout" className="font-extrabold mb-8 text-[36px]" />
@@ -89,7 +83,7 @@ export default function CheckoutPage() {
             {/* Left side */}
             <div className="flex flex-col gap-10 flex-1 mb-20">
               <CheckoutCart
-                onClickCountButton={onClickCountButton}
+                onClickCountButton={clickCountButton}
                 removeCartItem={removeCartItem}
                 items={items}
                 loading={loading}
