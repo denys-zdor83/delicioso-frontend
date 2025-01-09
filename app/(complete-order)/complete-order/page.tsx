@@ -42,7 +42,7 @@ export default function CompleteOrder() {
       }
     }, [token]);
 
-    // TODO Try to make it with Suspence component
+    // TODO Try to make it with Suspence component. LATER
     if (loadingStatus) {
       return (
         <div className="flex flex-col items-center mt-10">

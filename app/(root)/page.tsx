@@ -32,7 +32,6 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
         categories={categories.filter(category => category.products.length > 0)}
       />
 
-      {/* TODO: Make every story working, and make them all as slider */}
       <Stories />
 
       <Container className="mt-10 pb-14">
