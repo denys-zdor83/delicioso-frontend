@@ -3,7 +3,7 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { WhiteBlock } from '../WhiteBlock';
-import { FormTextarea } from '../Form';
+import { FormTextarea, FormInput } from '../Form';
 import { AddressInput } from '../';
 import { ErrorText } from '../ErrorText';
 
@@ -18,19 +18,23 @@ export const CheckoutAddressForm: React.FC<Props> = ({ className }) => {
     <WhiteBlock title="3. Delivery address" className={className}>
       <div className="flex flex-col gap-5">
 
-
-        <Controller
+        {/* TODO Change the address library to Canadian. LATER */}
+        {/* <Controller 
           control={control}
           name="address"
           render={({ field, fieldState }) => (
             <>
-                {/* TODO Change the address library to US or Canadian */}
               <AddressInput onChange={field.onChange} />
               {fieldState.error?.message && <ErrorText text={fieldState.error.message} />}
             </>
           )}
+        />*/}
+
+        <FormInput
+          name="address"
+          className="text-base"
+          placeholder="Address"
         />
-        
 
         <FormTextarea
           name="comment"
