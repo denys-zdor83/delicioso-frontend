@@ -1,5 +1,5 @@
 import { prisma } from '@/prisma/prisma-client';
-import { OrderSuccessTemplate } from '@/shared/components';
+import { OrderSuccessTemplate, OrderCanceletionTemplate } from '@/shared/components';
 import { capturePayment, generateAccessToken, sendEmail } from '@/shared/lib';
 import { CartItemDTO } from '@/shared/services/dto/cart.dto';
 import { OrderStatus } from '@prisma/client';
@@ -36,13 +36,21 @@ export async function POST(req: NextRequest) {
         const items = JSON.parse(order?.items as string) as CartItemDTO[];
 
         if (isSucceeded) {
+            console.log('Email sent SUCCESS');
             await sendEmail(
                 order.email,
-                'Next Pizza / Your order is completed 🎉',
+                'Delicioso Pizza / Your order is completed 🎉',
                 OrderSuccessTemplate({ orderId: order.id, items }),
             );
         } else {
-        // TODO: send email about order cancellation
+            // TODO: Send cancel order email. LATER
+
+            // console.log('Email sent CANCEL');
+            // await sendEmail(
+            //     order.email,
+            //     'Delicioso Pizza / Your order was canceled',
+            //     OrderCanceletionTemplate({ orderId: order.id }),
+            // );
         }
 
         return NextResponse.json({ success: true, data: captureResponse });
