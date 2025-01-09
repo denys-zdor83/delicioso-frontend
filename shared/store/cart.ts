@@ -23,6 +23,9 @@ export interface CartState {
 
   /* Request to remove product from cart */
   removeCartItem: (id: number) => Promise<void>;
+
+  /* Click button to change number of chosen product */
+  clickCountButton: (id: number, quantity: number, type: 'plus' | 'minus') => void;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
@@ -88,5 +91,10 @@ export const useCartStore = create<CartState>((set, get) => ({
     } finally {
       set({ loading: false });
     }
+  },
+
+  clickCountButton: (id: number, quantity: number, type: 'plus' | 'minus') => {
+    const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+    get().updateItemQuantity(id, newQuantity);
   },
 }));
