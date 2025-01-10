@@ -1,9 +1,11 @@
 'use client'
 
 import React from 'react'
-import { Title, CheckboxFiltersGroup } from '.'
+import { cn } from '@/shared/lib/utils'
+import { Title, CheckboxFiltersGroup, CloseMobFilters } from '.'
 import { Input, RangeSlider } from '../ui'
 import { useQueryFilters, useFilters, useIngredients } from '@/shared/hooks'
+import { useWindowSize } from 'react-use';
 
 type Props = {
     className?: string
@@ -11,7 +13,9 @@ type Props = {
 
 export const Filters: React.FC<Props> = ({ className }) => {
   const { ingredients, loading } = useIngredients()
+  const [isFilterOpened, setIsFilterOpened] = React.useState(false)
   const filters = useFilters();
+  const { width } = useWindowSize();
 
   useQueryFilters(filters)
 
@@ -25,10 +29,24 @@ export const Filters: React.FC<Props> = ({ className }) => {
     filters.setPrices('priceTo', prices[1] )
   }
 
+  const closeOpenFilters = () => {
+    setIsFilterOpened(!isFilterOpened)
+  }
+
+  React.useEffect(() => {
+    if (width > 640) {
+      setIsFilterOpened(false)
+    }
+  }, [width])
+
   return (
     <div className={className}>
+      <div className="flex items-center justify-between">
         <Title text="Filters" size="sm" className="mb-5 font-bold" />
-        
+        <CloseMobFilters closeOpenFilters={closeOpenFilters} />
+      </div>
+      
+      <div className={cn('overflow-hidden h-0 sm:h-auto', isFilterOpened ? 'h-auto' : 'h-0')}>
         {/* Checkbox filters */}
         <CheckboxFiltersGroup
           title="Type of dough"
@@ -100,6 +118,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
           selected={filters.selectedIngredients}
           name="ingredients"
         />
+      </div>
     </div>
   )
 }
