@@ -21,19 +21,12 @@ interface Props {
 export const Stories: React.FC<Props> = ({ className }) => {
   const [stories, setStories] = React.useState<IStory[]>([]);
   const [open, setOpen] = React.useState(false);
+  const [skeletonCardsNumber, setSkeletonCardsNumber] = React.useState(0);
+  const [storyCardsNumber, setStoryCardsNumber] = React.useState(0);
   const [selectedStory, setSelectedStory] = React.useState<IStory>();
   const { width } = useWindowSize();
-  let storyCardsNumber = 5;
+  // let storyCardsNumber = 5;
   let storyCardsWidth = 520;
-
-  if (768 < width && width < 1024) {
-    storyCardsNumber = 4;
-  } else if (640 < width && width < 768) {
-    storyCardsNumber = 3;
-  } else if (width < 640) {
-    storyCardsNumber = 2;
-    storyCardsWidth = width - 20;
-  }
 
   React.useEffect(() => {
     async function fetchStories() {
@@ -42,6 +35,25 @@ export const Stories: React.FC<Props> = ({ className }) => {
     }
 
     fetchStories();
+  }, []);
+
+  React.useEffect(() => {
+    if (768 < width && width < 1024) {
+      setStoryCardsNumber(4);
+      setSkeletonCardsNumber(4);
+      return;
+    } else if (640 < width && width < 768) {
+      setStoryCardsNumber(3);
+      setSkeletonCardsNumber(3);
+      return;
+    } else if (width < 640) {
+      setStoryCardsNumber(2);
+      setSkeletonCardsNumber(2);
+      storyCardsWidth = width - 20;
+      return;
+    }
+    setStoryCardsNumber(5);
+    setSkeletonCardsNumber(6);
   }, []);
 
   const onClickStory = (story: IStory) => {
@@ -56,7 +68,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
     <>
       <Container className={cn('flex items-center justify-between gap-2 my-10', className)}>
         {stories.length === 0 &&
-          [...Array(6)].map((_, index) => (
+          [...Array(skeletonCardsNumber)].map((_, index) => (
             <div key={index} className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
           ))}
 
