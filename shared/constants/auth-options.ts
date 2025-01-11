@@ -32,7 +32,6 @@ export const authOptions: AuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      // TODO: ERROR
       async authorize(credentials) {
         if (!credentials) {
           return null;
