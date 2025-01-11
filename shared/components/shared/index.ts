@@ -36,6 +36,7 @@ export { InfoBlock } from "./InfoBlock";
 export { ProfileForm } from "./ProfileForm";
 export { Stories } from "./Stories";
 export { PaymentStatus } from "./PaymentStatus";
+export { CloseMobFilters } from "./CloseMobFilters";
 
 export * from "./Modals";
 export * from "./Form";
