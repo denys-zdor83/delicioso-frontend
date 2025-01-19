@@ -12,6 +12,7 @@ interface Props {
   onClose: () => void;
 }
 
+// TODO: Replace email sender
 export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
   const [type, setType] = React.useState<'login' | 'register'>('login');
 

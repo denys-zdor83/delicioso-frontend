@@ -25,7 +25,6 @@ export const Stories: React.FC<Props> = ({ className }) => {
   const [storyCardsNumber, setStoryCardsNumber] = React.useState(0);
   const [selectedStory, setSelectedStory] = React.useState<IStory>();
   const { width } = useWindowSize();
-  // let storyCardsNumber = 5;
   let storyCardsWidth = 520;
 
   React.useEffect(() => {
@@ -67,10 +66,12 @@ export const Stories: React.FC<Props> = ({ className }) => {
   return (
     <>
       <Container className={cn('flex items-center justify-between gap-2 my-10', className)}>
-        {stories.length === 0 &&
-          [...Array(skeletonCardsNumber)].map((_, index) => (
-            <div key={index} className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
-          ))}
+        {
+          stories.length === 0 &&
+            [...Array(skeletonCardsNumber)].map((_, index) => (
+              <div key={index} className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
+            ))
+        }
 
         <Swiper
           slidesPerView={storyCardsNumber}
@@ -79,18 +80,20 @@ export const Stories: React.FC<Props> = ({ className }) => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {stories.map((story) => (
-            <SwiperSlide>
-              <img
-                key={story.id}
-                onClick={() => onClickStory(story)}
-                className="rounded-md cursor-pointer"
-                height={250}
-                width={200}
-                src={story.previewImageUrl}
-              />
-            </SwiperSlide>
-          ))}
+          {
+            stories.map((story) => (
+              <SwiperSlide key={story.id}>
+                <img
+                  key={story.id}
+                  onClick={() => onClickStory(story)}
+                  className="rounded-md cursor-pointer"
+                  height={250}
+                  width={200}
+                  src={story.previewImageUrl}
+                />
+              </SwiperSlide>
+            ))
+          }
         </Swiper> 
 
         {open && (
