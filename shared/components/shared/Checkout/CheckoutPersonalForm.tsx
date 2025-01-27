@@ -14,8 +14,8 @@ export const CheckoutPersonalForm: React.FC<Props> = ({ className }) => {
     const [inputValue, setInputValue] = React.useState('');
 
     const handleInput = e => {
-    const formattedPhoneNumber = usePhoneMask(e.target.value);
-    setInputValue(formattedPhoneNumber);
+        const formattedPhoneNumber = usePhoneMask(e.target.value);
+        setInputValue(formattedPhoneNumber);
     }
 
     return (

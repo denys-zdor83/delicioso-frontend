@@ -103,15 +103,16 @@ export async function createOrder(data: CheckoutFormValues) {
 
     const paymentUrl = paymentData.links.find(link => link.rel === 'approve').href;
 
-    await sendEmail(
-      data.email,
-      'Delicioso Pizza / Order payment #' + order.id,
-      PayOrderTemplate({
-        orderId: order.id,
-        totalAmount: order.totalAmount,
-        paymentUrl,
-      }),
-    );
+     // TODO: Redu with another library
+    // await sendEmail(
+    //   data.email,
+    //   'Delicioso Pizza / Order payment #' + order.id,
+    //   PayOrderTemplate({
+    //     orderId: order.id,
+    //     totalAmount: order.totalAmount,
+    //     paymentUrl,
+    //   }),
+    // );
 
     return paymentUrl;
   } catch (error) {
@@ -182,13 +183,14 @@ export async function registerUser(body: Prisma.UserCreateInput) {
       },
     });
 
-    await sendEmail(
-      createdUser.email,
-      'Delicioso Pizza / 📝 Registration confirmation',
-      VerificationUserTemplate({
-        code,
-      }),
-    );
+    // TODO: Redu with another library
+    // await sendEmail(
+    //   createdUser.email,
+    //   'Delicioso Pizza / 📝 Registration confirmation',
+    //   VerificationUserTemplate({
+    //     code,
+    //   }),
+    // );
   } catch (err) {
     console.log('Error [CREATE_USER]', err);
     throw err;

@@ -36,12 +36,13 @@ export async function POST(req: NextRequest) {
         const items = JSON.parse(order?.items as string) as CartItemDTO[];
 
         if (isSucceeded) {
-            console.log('Email sent SUCCESS');
-            await sendEmail(
-                order.email,
-                'Delicioso Pizza / Your order is completed 🎉',
-                OrderSuccessTemplate({ orderId: order.id, items }),
-            );
+             // TODO: Redu with another library
+            // console.log('Email sent SUCCESS');
+            // await sendEmail(
+            //     order.email,
+            //     'Delicioso Pizza / Your order is completed 🎉',
+            //     OrderSuccessTemplate({ orderId: order.id, items }),
+            // );
         } else {
             // TODO: Send cancel order email. LATER
 

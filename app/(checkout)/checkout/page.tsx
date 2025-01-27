@@ -1,13 +1,11 @@
 'use client';
 
-
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
   CheckoutSidebar,
-  Container,
   Title,
   CheckoutPersonalForm,
   CheckoutCart,
@@ -74,7 +72,6 @@ export default function CheckoutPage() {
   };
 
   return (
-    // <Container className="mt-10">
     <>
       <Title text="Checkout" className="font-extrabold mb-8 text-[36px]" />
 
@@ -106,6 +103,5 @@ export default function CheckoutPage() {
         </form>
       </FormProvider>
     </>
-    // {/* </Container> */}
   );
 }
