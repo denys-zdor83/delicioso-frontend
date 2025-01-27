@@ -37,7 +37,7 @@ export const CartDrawerItem: React.FC<Props> = ({
 
             <hr className="my-3" />
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
                 <CountButton onClick={onClickCountButton} value={quantity} />
 
                 <div className="flex items-center gap-3">
