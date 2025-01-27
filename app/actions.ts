@@ -92,7 +92,7 @@ export async function createOrder(data: CheckoutFormValues) {
     if (!paymentData) {
       throw new Error('Payment data not found');
     }
-    console.log('paymentData ------------------------', paymentData)
+
     await prisma.order.update({
       where: {
         id: order.id,
