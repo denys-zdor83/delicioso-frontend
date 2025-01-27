@@ -1,5 +1,6 @@
 'use server';
 
+import { PaymentData, Link } from '@/@types/paypal';
 import { prisma } from '@/prisma/prisma-client';
 import { PayOrderTemplate, VerificationUserTemplate } from '@/shared/components';
 import { CheckoutFormValues } from '@/shared/constants';
@@ -82,12 +83,12 @@ export async function createOrder(data: CheckoutFormValues) {
       },
     });
 
-    const paymentData = await createPayment({
+    const paymentData: PaymentData = await createPayment({
       amount: order.totalAmount,
       orderId: order.id,
       description: 'Order payment #' + order.id,
     });
-
+    
     if (!paymentData) {
       throw new Error('Payment data not found');
     }
@@ -101,7 +102,8 @@ export async function createOrder(data: CheckoutFormValues) {
       },
     });
 
-    const paymentUrl = paymentData.links.find(link => link.rel === 'approve').href;
+    let paymentUrl = paymentData.links.find((link: Link) => link.rel === 'approve')?.href;
+
 
      // TODO: Redu with another library
     // await sendEmail(
