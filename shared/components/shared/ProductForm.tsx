@@ -7,7 +7,7 @@ import { ProductWithRelations } from "@/@types/prisma";
 
 interface Props {
     product: ProductWithRelations;
-    onSubmit: VoidFunction;
+    onSubmit?: VoidFunction;
 }
 
 export const ProductForm: React.FC<Props> = ({ product, onSubmit: _onSubmit }) => {
