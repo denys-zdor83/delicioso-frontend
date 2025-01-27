@@ -4,7 +4,7 @@ import { getUserSession } from '@/shared/lib/get-user-session';
 import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 
-// export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
