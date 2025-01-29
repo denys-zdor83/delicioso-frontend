@@ -1,7 +1,6 @@
 import { Ingredient, ProductItem } from "@prisma/client";
 import { PizzaSize, PizzaType } from "../constants/pizza";
 
-// TODO: Example of commenting code
 /**
  * Function for calculating total pizza price
  * @param type - type of chosen pizza
