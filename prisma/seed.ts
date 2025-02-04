@@ -182,6 +182,15 @@ async function up() {
             generateProductItem({ productId: 15 }),
             generateProductItem({ productId: 16 }),
             generateProductItem({ productId: 17 }),
+            generateProductItem({ productId: 18 }),
+            generateProductItem({ productId: 19 }),
+            generateProductItem({ productId: 21 }),
+            generateProductItem({ productId: 22 }),
+            generateProductItem({ productId: 23 }),
+            generateProductItem({ productId: 24 }),
+            generateProductItem({ productId: 25 }),
+            generateProductItem({ productId: 26 }),
+            generateProductItem({ productId: 27 }),
         ],
     });
 
