@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent } from "@/shared/components/ui/dialog"
 import { cn } from "@/shared/lib/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ProductForm } from "..";
 import { ProductWithRelations } from "@/@types/prisma";
 import React from "react";
@@ -14,11 +14,23 @@ import React from "react";
 
 export const ChooseProductModal: React.FC<ModalProps> = ({ product, className }) => {
     const router = useRouter();
+    const pathname = usePathname(); 
+    const [isOpen, setIsOpen] = React.useState(Boolean(product));
+
+    React.useEffect(() => {
+        if (pathname === '/') {
+            setIsOpen(false);
+        }
+    }, [pathname]);
 
     return (
-        <Dialog 
-            open={Boolean(product)}
-            onOpenChange={() => router.back()}
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) {
+                    router.replace('/');
+                }
+            }}
         >
             <DialogContent
                 className={cn(
@@ -26,7 +38,7 @@ export const ChooseProductModal: React.FC<ModalProps> = ({ product, className })
                     className
                 )}
             >
-                <ProductForm product={product} onSubmit={() => router.back()} />
+                <ProductForm product={product} onSubmit={() => router.replace('/')} />
             </DialogContent>
         </Dialog>
     )
