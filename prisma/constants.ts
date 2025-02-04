@@ -111,6 +111,16 @@ export const ingredients = [
 
 export const products = [
       {
+        name: 'Omelette with chicken and cheese',
+        imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp',
+        categoryId: 2,
+      },
+      {
+        name: 'Omelette with sosage and mushrooms',
+        imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp',
+        categoryId: 2,
+      },
+      {
         name: 'Omelette with ham and mushrooms',
         imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp',
         categoryId: 2,
@@ -193,6 +203,16 @@ export const products = [
       {
         name: 'Latte',
         imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
+        categoryId: 5,
+      },
+      {
+        name: 'Bubble caramel cappuccino',
+        imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
+        categoryId: 5,
+      },
+      {
+        name: 'Salty caramel cappuccino',
+        imageUrl: 'https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
         categoryId: 5,
       },
 ]
