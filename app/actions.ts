@@ -105,7 +105,7 @@ export async function createOrder(data: CheckoutFormValues) {
     let paymentUrl = paymentData.links.find((link: Link) => link.rel === 'approve')?.href;
 
 
-     // TODO: Redu with another library
+     // TODO: Redo with another library
     // await sendEmail(
     //   data.email,
     //   'Delicioso Pizza / Order payment #' + order.id,

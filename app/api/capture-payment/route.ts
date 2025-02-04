@@ -57,6 +57,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: true, data: captureResponse });
     } catch (error) {
         console.error('[capturePayment] Error capturing payment', error);
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+        return NextResponse.json({ success: false, error: '[capturePayment] Error capturing payment' }, { status: 500 });
     }
 };

@@ -1,14 +1,21 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from "next/navigation";
 import axios from 'axios';
 import { PaymentStatus } from '@/shared/components/shared/PaymentStatus';
 import { Loader } from 'lucide-react';
 import { Title } from '@/shared/components/shared';
 
-
 export default function CompleteOrder() {
+  return (
+    <Suspense>
+      <CompleteOrderContent />
+    </Suspense>
+  );
+}
+
+function CompleteOrderContent() {
     const searchParams = useSearchParams()
     const token = searchParams.get('token');
     const [status, setStatus] = React.useState(false);

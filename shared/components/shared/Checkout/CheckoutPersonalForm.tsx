@@ -13,7 +13,7 @@ interface Props {
 export const CheckoutPersonalForm: React.FC<Props> = ({ className }) => {
     const [inputValue, setInputValue] = React.useState('');
 
-    const handleInput = e => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const formattedPhoneNumber = usePhoneMask(e.target.value);
         setInputValue(formattedPhoneNumber);
     }

@@ -90,6 +90,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
                   height={250}
                   width={200}
                   src={story.previewImageUrl}
+                  style={{ userSelect: 'none' }}
                 />
               </SwiperSlide>
             ))
