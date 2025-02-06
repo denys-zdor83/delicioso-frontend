@@ -15,10 +15,12 @@ import React from "react";
 export const ChooseProductModal: React.FC<ModalProps> = ({ product, className }) => {
     const router = useRouter();
     const pathname = usePathname(); 
-    const [isOpen, setIsOpen] = React.useState(Boolean(product));
+    const [isOpen, setIsOpen] = React.useState(false);
 
     React.useEffect(() => {
-        if (pathname === '/') {
+        if (pathname.startsWith('/product/')) {
+            setIsOpen(true);
+        } else {
             setIsOpen(false);
         }
     }, [pathname]);
